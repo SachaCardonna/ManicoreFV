@@ -1,3 +1,4 @@
 ADD_LIBRARY(torus_shared SHARED torus_mappings.cpp)
 ADD_LIBRARY(torus_3DEmbedding_shared SHARED torus_mappings.cpp)
 TARGET_COMPILE_DEFINITIONS(torus_3DEmbedding_shared PRIVATE EMBEDDING_3D)
+ADD_DEPENDENCIES(meshes torus_shared torus_3DEmbedding_shared)

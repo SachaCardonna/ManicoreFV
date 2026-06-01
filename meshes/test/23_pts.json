@@ -1,5 +1,19 @@
 {
- "Map": [],
+ "Map": {
+  "Outer_dimension": 3,
+  "Arguments": [
+   null,
+   [
+    42
+   ]
+  ],
+  "Arguments_metric": [
+   null,
+   [
+    42
+   ]
+  ]
+ },
  "Dimension": 2,
  "Cells": [
   [
