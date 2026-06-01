@@ -6,3 +6,5 @@ ELSE()
   MESSAGE(STATUS "Boost not found, skipping the compilation of some Schemes")
 ENDIF()
 
+ADD_SUBDIRECTORY(FVScalar)
+
