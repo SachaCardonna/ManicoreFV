@@ -43,7 +43,7 @@ Mesh<dimension> * Mesh_builder<dimension>::build(const char * meshfile, const ch
 
   Maps_loader<dimension>* maps_p = new Maps_loader<dimension>(mapfile);
 
-  assert(data["Dimension"] = dimension && "Mesh builder dimension does not match the dimension specified in file");
+  assert(data["Dimension"] == dimension && "Mesh builder dimension does not match the dimension specified in file");
   // Embedding
   {
     auto const &map = data["Map"];
@@ -160,7 +160,7 @@ Mesh<dimension> * Mesh_builder<dimension>::build(const char * meshfile, const ch
         {
           assert(not dcells[iT]["Ref_elem"].is_null() && "Reference element must be provided for custom mappings");
           auto const & ref_elem = dcells[iT]["Ref_elem"];
-          assert(ref_elem.size() == 1 && ref_elem[0].size() == 2); // TODO Lift the restriction of only 1 ref element (to allows piecewise defined functions
+          assert(ref_elem.size() == 1 && ref_elem[0].size() == 2); // TODO Lift the restriction of only 1 ref element (to allows piecewise defined functions)
           double t1 = ref_elem[0][0][0];
           double t2 = ref_elem[0][1][0];
           triangulation.emplace_back(Simplex<1>{Eigen::Vector<double,1>{t1},Eigen::Vector<double,1>{t2}});

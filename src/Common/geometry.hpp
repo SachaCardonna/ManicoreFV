@@ -103,7 +103,7 @@ namespace Manicore::Geometry {
     return p_sum < 1. + esp && p_sum > -esp;
   }
 
-} // end namespace Volume
+} // end namespace 
 
 #endif
 

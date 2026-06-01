@@ -19,7 +19,7 @@
 #define MESH_HPP_INCLUDED
 
 #include "dcell.hpp"
-#include "loader.hpp" // Needed to destruct the loader
+#include "loader.hpp" // Needed to destroy the loader
 
 #include <memory>
 
@@ -168,6 +168,9 @@ namespace Manicore {
     template<size_t dimension>
     int Mesh<dimension>::get_boundary_orientation(size_t d, size_t i_cell, size_t j_bd) const
     {
+      if (d == 1) {
+        return (j_bd > 0)? 1 : -1;
+      }
       size_t i_bd_abs = get_boundary(d-1,d,i_cell)[j_bd];
       size_t bd_rel_map = get_relative_map(d-1,d,i_cell)[j_bd];
       auto get_orientation = [&]<size_t _d>(auto&& get_orientation)
@@ -180,11 +183,11 @@ namespace Manicore {
             auto const & E = get_cell_map<_d-1>(i_bd_abs);
             auto x = Geometry::middleSimplex<_d-1>(E.get_reference_elem()[0]);
             auto pM = E.evaluate_DI(bd_rel_map,x);
-    if (d == dimension) {
-            return get_cell_map<_d>(i_cell).get_orientation(0,E.evaluate_I(bd_rel_map,x),pM)*orientationTopCell(i_cell);
-    } else {
-            return get_cell_map<_d>(i_cell).get_orientation(0,E.evaluate_I(bd_rel_map,x),pM);
-    }
+            if (d == dimension) {
+                    return get_cell_map<_d>(i_cell).get_orientation(0,E.evaluate_I(bd_rel_map,x),pM)*orientationTopCell(i_cell);
+            } else {
+                    return get_cell_map<_d>(i_cell).get_orientation(0,E.evaluate_I(bd_rel_map,x),pM);
+            }
           } else {
             return get_orientation.template operator()<_d+1>(get_orientation);
           }

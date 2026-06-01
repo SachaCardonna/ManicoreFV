@@ -77,7 +77,7 @@ namespace Manicore {
     \tparam d %Dimension of the cell 
     Hold the reference element, compute the mappings and pullback between the reference element and the charts.
 
-    The class is specialize to apply some optimization when dealing with flat cells.
+    The class is specialized to apply some optimization when dealing with flat cells.
     */
   template<size_t dimension,size_t d>
   class dCell_map {
